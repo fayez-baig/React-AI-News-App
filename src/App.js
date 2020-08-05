@@ -1,23 +1,44 @@
 import React, { useState, useEffect } from "react";
-import alanbtn from "@alan-ai/alan-sdk-web";
+import alanBtn from "@alan-ai/alan-sdk-web";
+import wordsToNumbers from "words-to-numbers";
 import NewsCards from "./Components/NewsCards/NewsCards";
-import { Container } from "@material-ui/core";
-import "./App.css";
+import { Container, Typography, Modal } from "@material-ui/core";
+import useStyles from "./styles";
 
-// apikey news api : b26d123d2db14cdea91b6726f9eb55cc
+const App = () => {
+  const [activeArticle, setActiveArticle] = useState(0);
+  const [newsArticles, setNewsArticles] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-const alankey =
-  "8f9b78127541ee0bf44c4792b9200f452e956eca572e1d8b807a3e2338fdd0dc/stage";
-
-function App() {
-  const [newArticles, setNewArticles] = useState([]);
+  const classes = useStyles();
 
   useEffect(() => {
-    alanbtn({
-      key: alankey,
-      onCommand: ({ command, articles }) => {
+    alanBtn({
+      key:
+        "8f9b78127541ee0bf44c4792b9200f452e956eca572e1d8b807a3e2338fdd0dc/stage",
+      onCommand: ({ command, articles, number }) => {
         if (command === "newHeadlines") {
-          setNewArticles(articles);
+          setNewsArticles(articles);
+          setActiveArticle(-1);
+        } else if (command === "instructions") {
+          setIsOpen(true);
+        } else if (command === "highlight") {
+          setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
+        } else if (command === "open") {
+          const parsedNumber =
+            number.length > 2
+              ? wordsToNumbers(number, { fuzzy: true })
+              : number;
+          const article = articles[parsedNumber - 1];
+
+          if (parsedNumber > 20) {
+            alanBtn().playText("Please try that again...");
+          } else if (article) {
+            window.open(article.url, "_blank");
+            alanBtn().playText("Opening...");
+          } else {
+            alanBtn().playText("Please try that again...");
+          }
         }
       },
     });
@@ -25,12 +46,63 @@ function App() {
 
   return (
     <Container>
-      <div className="App">
-        <h1>AI NEWS APP</h1>
-        <NewsCards articles={newArticles} />
+      <div className={classes.logoContainer}>
+        {newsArticles.length ? (
+          <div className={classes.infoContainer}>
+            <div className={classes.card}>
+              <Typography variant="h5" component="h2">
+                Try saying: <br />
+                <br />
+                Open article number [4]
+              </Typography>
+            </div>
+            <div className={classes.card}>
+              <Typography variant="h5" component="h2">
+                Try saying: <br />
+                <br />
+                Go back
+              </Typography>
+            </div>
+          </div>
+        ) : null}
+        <img
+          src="https://alan.app/voice/images/previews/preview.jpg"
+          className={classes.alanLogo}
+          alt="logo"
+        />
       </div>
+      <NewsCards articles={newsArticles} activeArticle={activeArticle} />
+      {/* <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+      {!newsArticles.length ? (
+        <div className={classes.footer}>
+          <Typography variant="body1" component="h2">
+            Created by
+            <a
+              className={classes.link}
+              href="https://www.linkedin.com/in/adrian-hajdin/"
+            >
+              {" "}
+              Adrian Hajdin
+            </a>{" "}
+            -
+            <a
+              className={classes.link}
+              href="http://youtube.com/javascriptmastery"
+            >
+              {" "}
+              JavaScript Mastery
+            </a>
+          </Typography>
+          <img
+            className={classes.image}
+            src=""
+            height="50px"
+            alt="JSMastery logo"
+          />
+        </div>
+      ) : null} */}
     </Container>
   );
-}
+};
 
 export default App;
