@@ -28,7 +28,12 @@ That's it. vidly app can be accessed locally from here: 👉 http://localhost:30
 
 Sample Voice Commands
 ✔️ Give me the latest news
+
 ✔️ Give me the latest Technology news
+
 ✔️ What's up with PlayStation 5
+
 ✔️ Give me the news from CNN
+
 ✔️ Give me the news from CNN
+
