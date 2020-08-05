@@ -27,6 +27,7 @@ $ npm start
 That's it. vidly app can be accessed locally from here: 👉 http://localhost:3000/
 
 Sample Voice Commands
+
 ✔️ Give me the latest news
 
 ✔️ Give me the latest Technology news
