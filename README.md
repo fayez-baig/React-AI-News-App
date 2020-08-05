@@ -4,7 +4,9 @@
 
 👏 Live Demo
 Table of Contents
+
 🗹 Installation
+
 🗹 Sample Voice Commands
 
 ✍️ Installation
