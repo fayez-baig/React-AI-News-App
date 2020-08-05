@@ -24,6 +24,27 @@ const infoCards = [
     info: "CNN, Wired, BBC News, Time, IGN, Buzzfeed, ABC News...",
     text: "Give me the news from CNN",
   },
+  {
+    color: "#283593",
+    title: "You Can do Simple Calculations",
+    info: "addition, subtraction, multiplication, division",
+    text: "how much is one plus one",
+  },
+  {
+    color: "#1565c0",
+    title: "Find the Current Date",
+    text: "What is the Date",
+  },
+  {
+    color: "#4527a0",
+    title: "Find the Current Time",
+    text: "What is the Current Time",
+  },
+  {
+    color: "#00838f",
+    title: "To stop Alan",
+    text: "stop alan, thank you alan",
+  },
 ];
 
 const NewsCards = ({ articles, activeArticle }) => {
