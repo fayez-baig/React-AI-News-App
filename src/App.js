@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import wordsToNumbers from "words-to-numbers";
 import NewsCards from "./Components/NewsCards/NewsCards";
-import { Container, Typography, Modal } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import useStyles from "./styles";
 
 const App = () => {
