@@ -36,5 +36,5 @@ Sample Voice Commands
 
 ✔️ Give me the news from CNN
 
-✔️ Give me the news from CNN
+✔️ How much is one plus one
 
