@@ -24,7 +24,7 @@ Once node dependencies are installed then please open your terminal and run this
 $ npm start
 ```
 
-That's it. vidly app can be accessed locally from here: 👉 http://localhost:3000/
+That's it. App can be accessed locally from here: 👉 http://localhost:3000/
 
 Sample Voice Commands
 
